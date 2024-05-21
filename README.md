@@ -2,7 +2,7 @@
 
 #### follow the steps to setup pivot_backend locally (granted git and python is installed on your distro/os)
 
-1. git clone <will add link here later>
+1. git clone https://github.com/DolanDark/job_assignment_pivotroots.git
 
 2. cd pivot_backend/
 
