@@ -79,16 +79,17 @@ def document_upload(user_info, folder, filename):
         if not get_all_files:
             return jsonify({'message' : 'File does not exist for this user', 'status':'failure'}), 401
 
-        try:
-            is_convertable = int(revision)
-        except Exception as err:
-            return jsonify({'message' : 'revision type should be a number', 'status':'failure'}), 401
+        if revision != None:
+            try:
+                is_convertable = int(revision)
+            except Exception as err:
+                return jsonify({'message' : 'revision type should be a number', 'status':'failure'}), 401
 
-        if int(revision) > len(get_all_files):
-            return jsonify({'message' : 'revision does not exist', 'status':'failure'}), 401
+            if int(revision) > (len(get_all_files) - 1):
+                return jsonify({'message' : 'revision does not exist', 'status':'failure'}), 401
 
         if revision:
-            load_file = get_all_files[int(revision)]
+            load_file = get_all_files[(len(get_all_files) - 1) - int(revision)]
         else:
             load_file = get_all_files[0]
             
@@ -101,7 +102,7 @@ def document_upload(user_info, folder, filename):
             "file_name": load_file["file_name"]
         }
 
-        return jsonify({'message' : 'File fetched successfully', 'status':'success', 'data': {'user_id': user_info["user_id"], "encoded_data": encoded_data, "data_info": data_info }}), 200
+        return jsonify({'message' : 'File fetched successfully', 'status':'success', 'data': {'user_id': user_info["user_id"], "file_id": load_file["file_id"], "encoded_data": encoded_data, "data_info": data_info }}), 200
 
     elif request.method == 'POST':
 

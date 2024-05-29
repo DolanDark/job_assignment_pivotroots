@@ -17,6 +17,7 @@ function HomePage() {
             /register (POST)<br/>
             /user-page (GET)<br/>
             /documents/&lt;folder&gt;/&lt;filename&gt;&lt;/filename&gt; (GET, POST)
+            <br/><br/>the repo also contains the postman collection for this app
             </p>
         </div>
     )
